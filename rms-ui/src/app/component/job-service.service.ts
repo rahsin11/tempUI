@@ -5,7 +5,7 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class JobServiceService {
-  REST_API_URL: string = "http://localhost:8090/rms-app/jobs";
+  REST_API_URL: string = "http://localhost:8090/rms/jobs";
   constructor(private http: HttpClient) {
 
   }
@@ -36,4 +36,14 @@ export class JobServiceService {
     return promise;
     //4: Return response from server
   }
+  getJobs() {
+    return this.http.get(this.REST_API_URL)
+      .pipe(map(res => {  //3.get res from rest api
+        console.log(res);
+        return res;     //Send it back to component
+      }));
+  }
+
 }
+
+
